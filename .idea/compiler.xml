@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TicTacToe11" />
         <module name="TicTacToe11 — копия" />
+        <module name="TicTacToe11 vvv1" />
         <module name="TicTacToe11 v3" />
+        <module name="TicTacToe" />
       </profile>
     </annotationProcessing>
   </component>

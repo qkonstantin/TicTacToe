@@ -23,13 +23,13 @@ public class Controller {
         boolean isWinnerX = false;
         String winnerStr = "";
 
-        if (checkWinner(FieldState.CROSS)) {
+        if (model.checkWinner(FieldState.CROSS)) {
             winnerStr = "Победа X";
             isSomeoneWin = true;
             isWinnerX = true;
         }
 
-        if (checkWinner(FieldState.TOE)) {
+        if (model.checkWinner(FieldState.TOE)) {
             winnerStr = "Победа O";
             isSomeoneWin = true;
             isWinnerX = false;
@@ -48,17 +48,6 @@ public class Controller {
         view.setUpGameBoardForNewGame();
     }
 
-    boolean checkWinner(FieldState symbol){
-        return (model.getTableField(0,0).equals(symbol) && model.getTableField(0,1).equals(symbol) && model.getTableField(0,2).equals(symbol))
-                || (model.getTableField(1,0).equals(symbol) && model.getTableField(1,1).equals(symbol) && model.getTableField(1,2).equals(symbol))
-                || (model.getTableField(2,0).equals(symbol) && model.getTableField(2,1).equals(symbol) && model.getTableField(2,2).equals(symbol))
-                || (model.getTableField(0,0).equals(symbol) && model.getTableField(1,0).equals(symbol) && model.getTableField(2,0).equals(symbol))
-                || (model.getTableField(0,1).equals(symbol) && model.getTableField(1,1).equals(symbol) && model.getTableField(2,1).equals(symbol))
-                || (model.getTableField(0,2).equals(symbol) && model.getTableField(1,2).equals(symbol) && model.getTableField(2,2).equals(symbol))
-                || (model.getTableField(0,0).equals(symbol) && model.getTableField(1,1).equals(symbol) && model.getTableField(2,2).equals(symbol))
-                || (model.getTableField(2,0).equals(symbol) && model.getTableField(1,1).equals(symbol) && model.getTableField(0,2).equals(symbol));
-    }
-
     private void changeScore(boolean isWinnerX) {
         if (isWinnerX) {
             scoreX++;
@@ -71,15 +60,14 @@ public class Controller {
     }
 
     private void game(int fieldCoordY, int fieldCoordX) {
-        FieldState currentPlayer;
+        String currentPlayer;
         if (i % 2 == 0) {
             symbol = FieldState.CROSS;
-            currentPlayer = FieldState.TOE;
+            currentPlayer = FieldState.TOE.toString();
         } else {
             symbol = FieldState.TOE;
-            currentPlayer = FieldState.CROSS;
+            currentPlayer = FieldState.CROSS.toString();
         }
-
         model.setValue(fieldCoordY, fieldCoordX, symbol);
         view.showCurrentPlayer(currentPlayer);
         i++;

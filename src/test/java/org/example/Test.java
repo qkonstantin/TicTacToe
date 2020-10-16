@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 public class Test {
     Model model = new Model();
-    View view = new View();
-    Controller controller = new Controller(view, model);
 
     private final FieldState x = FieldState.CROSS;
     private final FieldState o = FieldState.TOE;
@@ -16,7 +14,7 @@ public class Test {
         model.setValue(0, 0, x);
         model.setValue(0, 1, x);
         model.setValue(0, 2, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -25,7 +23,7 @@ public class Test {
         model.setValue(1, 0, x);
         model.setValue(1, 1, x);
         model.setValue(1, 2, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -34,7 +32,7 @@ public class Test {
         model.setValue(2, 0, x);
         model.setValue(2, 1, x);
         model.setValue(2, 2, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -43,7 +41,7 @@ public class Test {
         model.setValue(0, 0, x);
         model.setValue(1, 0, x);
         model.setValue(2, 0, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -52,7 +50,7 @@ public class Test {
         model.setValue(0, 1, x);
         model.setValue(1, 1, x);
         model.setValue(2, 1, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -61,7 +59,7 @@ public class Test {
         model.setValue(0, 2, x);
         model.setValue(1, 2, x);
         model.setValue(2, 2, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -70,7 +68,7 @@ public class Test {
         model.setValue(0, 0, x);
         model.setValue(1, 1, x);
         model.setValue(2, 2, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -79,7 +77,7 @@ public class Test {
         model.setValue(0, 2, x);
         model.setValue(1, 1, x);
         model.setValue(2, 0, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertTrue(result);
     }
 
@@ -88,7 +86,7 @@ public class Test {
         model.setValue(0, 0, o);
         model.setValue(0, 1, o);
         model.setValue(0, 2, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -97,7 +95,7 @@ public class Test {
         model.setValue(1, 0, o);
         model.setValue(1, 1, o);
         model.setValue(1, 2, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -106,7 +104,7 @@ public class Test {
         model.setValue(2, 0, o);
         model.setValue(2, 1, o);
         model.setValue(2, 2, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -115,7 +113,7 @@ public class Test {
         model.setValue(0, 0, o);
         model.setValue(1, 0, o);
         model.setValue(2, 0, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -124,7 +122,7 @@ public class Test {
         model.setValue(0, 1, o);
         model.setValue(1, 1, o);
         model.setValue(2, 1, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -133,7 +131,7 @@ public class Test {
         model.setValue(0, 2, o);
         model.setValue(1, 2, o);
         model.setValue(2, 2, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -142,7 +140,7 @@ public class Test {
         model.setValue(0, 0, o);
         model.setValue(1, 1, o);
         model.setValue(2, 2, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -151,7 +149,7 @@ public class Test {
         model.setValue(0, 2, o);
         model.setValue(1, 1, o);
         model.setValue(2, 0, o);
-        boolean result = controller.checkWinner(o);
+        boolean result = model.checkWinner(o);
         assertTrue(result);
     }
 
@@ -160,7 +158,7 @@ public class Test {
         model.setValue(0, 2, o);
         model.setValue(1, 1, x);
         model.setValue(2, 0, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertFalse(result);
     }
 
@@ -169,7 +167,7 @@ public class Test {
         model.setValue(0, 2, o);
         model.setValue(1, 1, o);
         model.setValue(2, 0, x);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertFalse(result);
     }
 
@@ -178,14 +176,14 @@ public class Test {
         model.setValue(0, 2, o);
         model.setValue(1, 1, o);
         model.setValue(2, 0, o);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertFalse(result);
     }
 
     @org.junit.Test
     public void test20() {
         model.setValue(0, 2, o);
-        boolean result = controller.checkWinner(x);
+        boolean result = model.checkWinner(x);
         assertFalse(result);
     }
 }

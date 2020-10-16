@@ -1,42 +1,43 @@
 package org.example;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import java.util.List;
+import java.util.ArrayList;
 
 public class View {
+    public Button playAgain;
     public Label labelWinner, scoreX, scoreO, who;
+    public ArrayList<Button> fieldList;
+
     Controller controller = new Controller(this, new Model());
 
-    @FXML
-    private List<Button> fieldList;
+    public void initialize() {
+        for(int i = 0; i < fieldList.size(); i++) {
+            final int ind = i;
+            fieldList.get(i).setOnAction(e -> onFieldClick(ind));
+        }
+    }
 
-    @FXML
-    void onFieldClick(ActionEvent event) {
-        Button btn = (Button) event.getSource();
-        int coordX = Integer.parseInt(btn.getProperties().get("coordX").toString());
-        int coordY = Integer.parseInt(btn.getProperties().get("coordY").toString());
-        FieldState symbol = controller.handleGameStep(coordY, coordX);
-        btn.setText(String.valueOf(symbol));
-        btn.setDisable(true);
+    void onFieldClick(int i) {
+        String symbol = controller.handleGameStep(i/3, i%3).toString();
+        fieldList.get(i).setText(symbol);
+        fieldList.get(i).setDisable(true);
         controller.checkWinner();
     }
 
     @FXML
     public void onPlayAgainClick() {
-         controller.resetGameBoard();
+        controller.resetGameBoard();
     }
 
-    public void showWinner(String winner){
+    public void showWinner(String winner) {
         labelWinner.setText(winner);
         disableButtons();
     }
 
-    public void showCurrentPlayer(FieldState currentPlayer) {
-        who.setText(String.valueOf(currentPlayer));
+    public void showCurrentPlayer(String currentPlayer) {
+        who.setText(currentPlayer);
     }
 
     public void showScores(String playerScoreX, String playerScoreO) {
@@ -44,27 +45,27 @@ public class View {
         scoreO.setText(playerScoreO);
     }
 
-    public void setUpGameBoardForNewGame(){
+    public void setUpGameBoardForNewGame() {
         resetFields();
         enableButtons();
         labelWinner.setText(FieldState.EMPTY.toString());
     }
 
     private void resetFields() {
-        for (Button button : fieldList) {
-            button.setText(FieldState.EMPTY.toString());
+        for(Button f: fieldList) {
+            f.setText(FieldState.EMPTY.toString());
         }
     }
 
     private void disableButtons() {
-        for (Button button : fieldList) {
-            button.setDisable(true);
+        for(Button f: fieldList) {
+            f.setDisable(true);
         }
     }
 
     private void enableButtons() {
-        for (Button button : fieldList) {
-            button.setDisable(false);
+        for(Button f: fieldList) {
+            f.setDisable(false);
         }
     }
 }
